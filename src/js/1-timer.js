@@ -4,15 +4,15 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const startBtn = document.querySelector('[data-start]');
-const fieldValue = document.querySelectorAll('.field');
-const daysElement = fieldValue[0].firstElementChild;
-const hoursElement = fieldValue[1].firstElementChild;
-const minutesElement = fieldValue[2].firstElementChild;
-const secondsElement = fieldValue[3].firstElementChild;
+const timerFields = document.querySelectorAll('.field');
+const daysElement = timerFields[0].firstElementChild;
+const hoursElement = timerFields[1].firstElementChild;
+const minutesElement = timerFields[2].firstElementChild;
+const secondsElement = timerFields[3].firstElementChild;
 startBtn.disabled = true;
-let intervalId;
+let timerIntervalId;
 let userSelectedDate;
-let diff = 0;
+let diff;
 
 const options = {
   enableTime: true,
@@ -74,13 +74,13 @@ function timerStart() {
   input.disabled = true;
   startBtn.disabled = true;
 
-  intervalId = setInterval(() => {
+  timerIntervalId = setInterval(() => {
     addLeadingZero(diff);
   }, 1000);
 }
 
 function timerStop() {
-  clearInterval(intervalId);
+  clearInterval(timerIntervalId);
   daysElement.textContent = '00';
   hoursElement.textContent = '00';
   minutesElement.textContent = '00';
